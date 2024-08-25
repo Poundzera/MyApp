@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,9 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private router: Router) {}
 
-  usuario = {
+  user = {
     username : "",
     password : "",
   }
@@ -17,11 +18,17 @@ export class HomePage {
 
 
   validar() {
-    if (this.usuario.username.length >= 3) {
-      if (this.usuario.password.length != 4){
-        
+    if (this.user.username.length >= 3) {
+      if (this.user.password.length == 4){
+        let navigationExtras: NavigationExtras = {
+          state: {
+            username: this.user.username,
+            password: this.user.password,
+          },
+        };
+        this.router.navigate (['/inicio'],navigationExtras);
       }else{
-        console.log('No contiene el minimo de caracteres');
+        console.log('Contraseña incorrecta');
         this.mensaje = 'Contraseña no cumple';
       }
     

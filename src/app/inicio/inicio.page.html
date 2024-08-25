@@ -1,13 +1,57 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>inicio</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>SkeletonAPP</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">inicio</ion-title>
+      <ion-title size="large">SkeletonAPP</ion-title>
     </ion-toolbar>
   </ion-header>
+
+
+
+  <div id="container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title id="titulo">Bienvenido!</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-label>Usuario: {{username}}</ion-label><br><br>
+        <ion-list>
+          <h1 id="titulo">Informacion Adicional</h1><br>
+          <ion-item>
+            <ion-input type="text" ([ngModel])="datos.nombre" label="Nombre" placeholder="Ingrese su nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" ([ngModel])="datos.apellido" label="Apellido" placeholder="Ingrese su apellido"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-select ([ngModel]) ="datos.nivel" label="Nivel educación" placeholder="Seleccione nivel">
+              <ion-select-option value="basica">Educación Básica</ion-select-option>
+              <ion-select-option value="media">Educación Media</ion-select-option>
+              <ion-select-option value="superior">Educación Superior</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-input ([ngModel])="datos.fecha" type="date" label="Fecha Nacimiento"></ion-input>
+          </ion-item>
+          <ion-button id="clear">Limpiar</ion-button>
+          <ion-button id="present-alert">Mostrar</ion-button>
+            <ion-alert
+              trigger="present-alert"
+              header="Usuario"
+              subHeader="Su nombre es {{datos.nombre}} {{datos.apellido}}"
+              [buttons]="alertButtons"
+            ></ion-alert>
+        </ion-list>
+     </ion-card-content>
+   </ion-card>
+  </div>
 </ion-content>
